@@ -7,6 +7,7 @@ import { IndexRouter } from "./controllers/v0/index.router";
 
 import bodyParser from "body-parser";
 import { V0_FEED_MODELS, V0_USER_MODELS } from "./controllers/v0/model.index";
+import { config } from "./config/config";
 
 (async () => {
   dotenv.config();
@@ -28,8 +29,8 @@ import { V0_FEED_MODELS, V0_USER_MODELS } from "./controllers/v0/model.index";
   const port = 8080;
 
   app.use(bodyParser.json());
-
-  // app.use(cors());
+  // const options = {origin: '*', credentials: true};
+  // app.use(cors(options));
   // We set the CORS origin to * so that we don't need to
   // worry about the complexities of CORS. 
   app.use(cors({
@@ -55,7 +56,7 @@ import { V0_FEED_MODELS, V0_USER_MODELS } from "./controllers/v0/model.index";
   // Start the Server
   app.listen(port, () => {
     console.log(`Backend server is listening on port ${port}....`);
-    console.log(`Frontent server running ${process.env.URL}`);
+    console.log(`Frontent server running ${config.url}`);
     console.log(`press CTRL+C to stop server`);
   });
 })();
